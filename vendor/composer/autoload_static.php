@@ -26,6 +26,7 @@ class ComposerStaticInit10b73a37fd09f521b2e264c0361f7072
         'main\\components\\Product' => __DIR__ . '/../..' . '/models/Product.php',
         'main\\components\\Router' => __DIR__ . '/../..' . '/components/Router.php',
         'main\\components\\Storage' => __DIR__ . '/../..' . '/components/Storage.php',
+        'main\\controllers\\MainController' => __DIR__ . '/../..' . '/controllers/MainController.php',
         'main\\controllers\\ProductsController' => __DIR__ . '/../..' . '/controllers/ProductsController.php',
         'main\\models\\Subcategory' => __DIR__ . '/../..' . '/models/Subcategory.php',
     );

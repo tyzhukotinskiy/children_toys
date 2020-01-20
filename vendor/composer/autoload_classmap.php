@@ -11,6 +11,7 @@ return array(
     'main\\components\\Product' => $baseDir . '/models/Product.php',
     'main\\components\\Router' => $baseDir . '/components/Router.php',
     'main\\components\\Storage' => $baseDir . '/components/Storage.php',
+    'main\\controllers\\MainController' => $baseDir . '/controllers/MainController.php',
     'main\\controllers\\ProductsController' => $baseDir . '/controllers/ProductsController.php',
     'main\\models\\Subcategory' => $baseDir . '/models/Subcategory.php',
 );

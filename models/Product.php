@@ -36,8 +36,10 @@ class Product
     }
 
 
-    public function getAllProducts($subcategory){
-        $query =  "select p.id, p.subcategory_id, p.title, p.description, p.price, p.price_markup, p.vendor_code, p.discount, p.images, p.brand_id, p.rating from products p, subcategories sc where p.subcategory_id = sc.id and sc.url = '$subcategory'";
+    public function getAllProducts($subcategory = null){
+        $query = "";
+        if($subcategory)$query =  "select p.id, p.subcategory_id, p.title, p.description, p.price, p.price_markup, p.vendor_code, p.discount, p.images, p.brand_id, p.rating from products p, subcategories sc where p.subcategory_id = sc.id and sc.url = '$subcategory'";
+        else $query = "select p.id, p.subcategory_id, p.title, p.description, p.price, p.price_markup, p.vendor_code, p.discount, p.images, p.brand_id, p.rating from products p";
         $this->storage->connectDB();
         $products_query = $this->storage->query($query);
         $products = [];

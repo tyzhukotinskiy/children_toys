@@ -1,7 +1,7 @@
 	<section id="main_content">
 		<div class="container">
 			<div class="crumbs">
-				<p><a href="main.php">Главная страница</a> / <a href="#">Категория</a> / Подкатегория</p>
+				<p><a href="/children_toys/main">Главная страница</a> / <a href="#">Категория</a> / Подкатегория</p>
 			</div>
 			<div class="row">
 				<div class="col-12">

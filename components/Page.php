@@ -11,6 +11,12 @@ class Page{
         $this->footer = VIEWS.'/footer.php';
     }
 
+    public function MainPage($content_file, $products){
+        include_once $this->header;
+        include_once($content_file);
+        include_once $this->footer;
+    }
+
     public function Subcategories($content_file, $category, $subcategories, $data = [])
     {
         include_once $this->header;

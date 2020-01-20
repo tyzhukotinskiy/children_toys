@@ -26,8 +26,8 @@
                 <a href="#" onclick="showCatalog()" class="catalog"><img src="/children_toys/images/catalog.png" alt="Каталог товаров магазина Слоник"><span>Каталог</span> <span class="catalog_arrow">></span></a>
                 <div class="dropdown_catalog">
                     <ul class="categories">
-                        <li onmouseover="hover(this)" class="for_babies"><a href="#" >Для малышей</a><span>></span></li>
-                        <li onmouseover="hover(this)" class="table_games"><a href="#" >Настольные игры</a><span>></span></li>
+                        <li onmouseover="hover(this)" class="for_babies"><a href="/children_toys/products/dlya-malyshey/" >Для малышей</a><span>></span></li>
+                        <li onmouseover="hover(this)" class="table_games"><a href="/children_toys/products/nastolnye-igry" >Настольные игры</a><span>></span></li>
                     </ul>
                     <div class="subcategories d-flex">
                         <ul class="sub_for_babies">
