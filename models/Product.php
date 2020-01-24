@@ -1,5 +1,5 @@
 <?php
-namespace main\components;
+namespace main\models;
 
 class Product
 {
@@ -35,6 +35,15 @@ class Product
         $this->rating = $data['rating'];
     }
 
+    public function getProductById($product_id){
+        $query = "select * from products p where p.id = $product_id";
+        $this->storage->connectDB();
+        $get_product = $this->storage->query($query);
+        $product = new \main\models\Product();
+        $product->map($get_product[0]);
+        return $product;
+    }
+
 
     public function getAllProducts($subcategory = null){
         $query = "";
@@ -44,11 +53,41 @@ class Product
         $products_query = $this->storage->query($query);
         $products = [];
         for($i = 0; $i < count($products_query); $i++){
-            $product = new \main\components\Product();
+            $product = new \main\models\Product();
             $product->map($products_query[$i]);
             $products[] = $product;
         }
         return $products;
+    }
+
+    public function getPath($subcategory){
+        $path = $this->storage->query("select sc.title subcategory, sc.url subcategory_url, c.title category, c.url category_url from subcategories sc, categories c where sc.category_id = c.id and sc.url = '$subcategory'");
+        return $path[0];
+    }
+
+    /**
+     *
+     */
+    public function getAdditionalData($product_id){
+        $data = [];
+        if(is_numeric($product_id)){
+            $data = $this->storage->query("select p.title as product, c.title as category, sc.title as subcategory, co.title as country, b.title as brand, c.url as category_url, sc.url as subcategory_url 
+            from products p, categories c, subcategories sc, countries co, brands b 
+            where p.subcategory_id = sc.id and sc.category_id = c.id and p.brand_id = b.id and b.country = co.id and p.id = $product_id");
+        }
+        else if(is_array($product_id)){
+            $products_id = [];
+            for($i = 0; $i < count($product_id); $i++){
+                $products_id[] = $product_id[$i]->getId();
+            }
+            $query = "select sc.url as subcategory_url, c.url as category_url from products p, subcategories sc, categories c where p.subcategory_id = sc.id and sc.category_id = c.id and p.id in (";
+            for($i = 0; $i < count($products_id); $i++){
+                if($i == count($products_id)-1) $query .= $products_id[$i].")";
+                else $query .= $products_id[$i].", ";
+            }
+            $data = $this->storage->query($query);
+        }
+        return $data;
     }
 
     public function getId(){

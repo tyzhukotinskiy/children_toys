@@ -18,7 +18,6 @@ class Router{
 
     public function run(){
         $uri = $this->getURI();
-        echo $uri;
         foreach($this->routes as $uriPattern => $path){
             if(preg_match("~$uriPattern~", $uri)){
                 $route = preg_replace("~$uriPattern~", $path, $uri);
@@ -29,9 +28,9 @@ class Router{
                 $action_name = 'action'.ucfirst(array_shift($route_parts));
 
 
-                echo $controller_name.' - контроллер; '.$action_name.' - метод';
+                //echo $controller_name.' - контроллер; '.$action_name.' - метод';
                 $params = (count($route_parts)>0)?$route_parts:array();
-                print_r($params);
+                //print_r($params);
                 $controller_path = "\\main\\controllers\\".$controller_name;
                 $controller_object = new $controller_path();
 

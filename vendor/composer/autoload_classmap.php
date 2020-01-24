@@ -6,12 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'main\\components\\Controller' => $baseDir . '/components/Controller.php',
     'main\\components\\DataBase' => $baseDir . '/components/DataBase.php',
     'main\\components\\Page' => $baseDir . '/components/Page.php',
-    'main\\components\\Product' => $baseDir . '/models/Product.php',
     'main\\components\\Router' => $baseDir . '/components/Router.php',
+    'main\\components\\Session' => $baseDir . '/components/Session.php',
     'main\\components\\Storage' => $baseDir . '/components/Storage.php',
     'main\\controllers\\MainController' => $baseDir . '/controllers/MainController.php',
     'main\\controllers\\ProductsController' => $baseDir . '/controllers/ProductsController.php',
+    'main\\controllers\\UserController' => $baseDir . '/controllers/UserController.php',
+    'main\\models\\Product' => $baseDir . '/models/Product.php',
     'main\\models\\Subcategory' => $baseDir . '/models/Subcategory.php',
+    'main\\models\\User' => $baseDir . '/models/User.php',
 );

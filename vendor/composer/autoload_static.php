@@ -21,14 +21,18 @@ class ComposerStaticInit10b73a37fd09f521b2e264c0361f7072
     );
 
     public static $classMap = array (
+        'main\\components\\Controller' => __DIR__ . '/../..' . '/components/Controller.php',
         'main\\components\\DataBase' => __DIR__ . '/../..' . '/components/DataBase.php',
         'main\\components\\Page' => __DIR__ . '/../..' . '/components/Page.php',
-        'main\\components\\Product' => __DIR__ . '/../..' . '/models/Product.php',
         'main\\components\\Router' => __DIR__ . '/../..' . '/components/Router.php',
+        'main\\components\\Session' => __DIR__ . '/../..' . '/components/Session.php',
         'main\\components\\Storage' => __DIR__ . '/../..' . '/components/Storage.php',
         'main\\controllers\\MainController' => __DIR__ . '/../..' . '/controllers/MainController.php',
         'main\\controllers\\ProductsController' => __DIR__ . '/../..' . '/controllers/ProductsController.php',
+        'main\\controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
+        'main\\models\\Product' => __DIR__ . '/../..' . '/models/Product.php',
         'main\\models\\Subcategory' => __DIR__ . '/../..' . '/models/Subcategory.php',
+        'main\\models\\User' => __DIR__ . '/../..' . '/models/User.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

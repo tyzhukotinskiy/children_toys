@@ -24,9 +24,10 @@ class Subcategory{
     }
 
 
-    public function getSubcategory($category)
-    {
-        $this->storage;
+    public function getCategory($category){
+        $query = "select c.title as category from categories c, subcategories sc where sc.category_id = c.id and c.url='$category'";
+        $category_result = $this->storage->query($query);
+        return $category_result[0]['category'];
     }
 
     public function getAllSubcategories($category)
