@@ -15,6 +15,7 @@ return array(
     'main\\controllers\\MainController' => $baseDir . '/controllers/MainController.php',
     'main\\controllers\\ProductsController' => $baseDir . '/controllers/ProductsController.php',
     'main\\controllers\\UserController' => $baseDir . '/controllers/UserController.php',
+    'main\\models\\Order' => $baseDir . '/models/Order.php',
     'main\\models\\Product' => $baseDir . '/models/Product.php',
     'main\\models\\Subcategory' => $baseDir . '/models/Subcategory.php',
     'main\\models\\User' => $baseDir . '/models/User.php',

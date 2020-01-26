@@ -1,19 +1,13 @@
 <?php
 namespace main\models;
 
-use main\components\Storage;
+use \main\components\Model;
 
-class Subcategory{
+class Subcategory extends Model{
     private $id;
     private $title;
     private $category_id;
     private $url;
-    private $storage;
-
-    public function __construct()
-    {
-        $this->storage = new \main\components\Storage();
-    }
 
     public function map($data)
     {

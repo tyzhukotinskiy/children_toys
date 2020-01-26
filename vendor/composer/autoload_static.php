@@ -30,6 +30,7 @@ class ComposerStaticInit10b73a37fd09f521b2e264c0361f7072
         'main\\controllers\\MainController' => __DIR__ . '/../..' . '/controllers/MainController.php',
         'main\\controllers\\ProductsController' => __DIR__ . '/../..' . '/controllers/ProductsController.php',
         'main\\controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
+        'main\\models\\Order' => __DIR__ . '/../..' . '/models/Order.php',
         'main\\models\\Product' => __DIR__ . '/../..' . '/models/Product.php',
         'main\\models\\Subcategory' => __DIR__ . '/../..' . '/models/Subcategory.php',
         'main\\models\\User' => __DIR__ . '/../..' . '/models/User.php',

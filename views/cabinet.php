@@ -12,7 +12,7 @@
                 <span><?=$user_data['role']?> на сайте</span>
                 <a href="#">Обратиться в службу поддержки</a>
                 <a href="/children_toys/user/settings/">Редактировать профиль</a>
-                <a href="#">Просмотреть собственные заказы</a>
+                <a href="/children_toys/user/myorders/">Просмотреть собственные заказы</a>
                 <a href="/children_toys/user/exit/">Выход</a>
             </div>
             <table>

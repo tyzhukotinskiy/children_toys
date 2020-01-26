@@ -41,8 +41,9 @@ class DataBase
      * Database constructor.
      * @param array $settings
      */
-    public function __construct(array $settings)
+    public function __construct($settings)
     {
+
         $this->settings = $settings;
 
         $this->connect();
@@ -51,7 +52,6 @@ class DataBase
     private function connect()
     {
         $dsn = 'mysql:dbname=' . $this->settings['dbname'] . ';host=' . $this->settings['host'];
-
         try {
             $this->pdo = new \PDO($dsn, $this->settings['user'], $this->settings['password'], [
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $this->settings['charset']
@@ -154,41 +154,3 @@ class DataBase
         }
     }
 }
-
-/*class DataBase{
-    private $isConnected;
-    private $pdo;
-    private $settings = [];
-    private $statement;
-
-    public function __construct($settings)
-    {
-        $this->settings = $settings;
-        $this->connect();
-    }
-
-    private function connect(){
-        try {
-            $this->pdo = new \PDO('mysql:host=' . $this->settings['host'] . ';dbname=' . $this->settings['dbname'] .
-                ';charset=' . $this->settings['charset'], $this->settings['user'], $this->settings['password']);
-            $this->isConnected = true;
-        }catch (\PDOException $e){
-            $e->getMessage();
-            $this->isConnected = false;
-        }
-    }
-
-    public function query($query){
-        $rowStatement = explode(" ", $query);
-        $statement = strtolower($rowStatement[0]);
-
-        if($statement == 'select'){
-
-        }else if($statement == 'insert', $statement == 'update', $statement == 'delete'){
-
-        }else {
-
-        }
-    }
-
-}*/?>

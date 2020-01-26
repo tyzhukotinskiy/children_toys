@@ -1,25 +1,21 @@
 <?php
 namespace main\models;
 
-class Product
-{
-    private $id;
-    private $subcategory_id;
-    private $title;
-    private $description;
-    private $price;
-    private $price_markup;
-    private $vendor_code;
-    private $dicsount;
-    private $images;
-    private $brand_id;
-    private $rating;
-    private $storage;
+use \main\components\Model;
 
-    public function __construct()
-    {
-        $this->storage = new \main\components\Storage();
-    }
+class Product extends Model
+{
+    public $id;
+    public $subcategory_id;
+    public $title;
+    public $description;
+    public $price;
+    public $price_markup;
+    public $vendor_code;
+    public $dicsount;
+    public $images;
+    public $brand_id;
+    public $rating;
 
     public function map($data){
         $this->id = $data['id'];
@@ -35,9 +31,33 @@ class Product
         $this->rating = $data['rating'];
     }
 
+    public function getProductsInOrder($orders){
+        $products = [];
+        for($i = 0, $k = 0; $i < count($orders); $i++){
+            for($j = 0; $j < count($orders[$i]->products['product_id']); $j++, $k++){
+                $products[] = $orders[$i]->products['product_id'][$k];
+            }
+        }
+        $products = array_unique($products);
+        $query = "select p.* from products p where id in (";
+        for($i = 0; $i < count($products); $i++){
+            if($i == count($products)-1) $query .= $products[$i].')';
+            else $query .= $products[$i].', ';
+        }
+        $products_in_order = \main\components\Singletone::query($query);
+        $products_objects = [];
+        for($i = 0; $i < count($products_in_order); $i++){
+            $product = new \main\models\Product();
+            $product->map($products_in_order[$i]);
+            $products_objects[] = $product;
+        }
+        return $products_objects;
+    }
+
+
     public function getProductById($product_id){
         $query = "select * from products p where p.id = $product_id";
-        $this->storage->connectDB();
+        //$this->storage->connectDB();
         $get_product = $this->storage->query($query);
         $product = new \main\models\Product();
         $product->map($get_product[0]);

@@ -67,6 +67,33 @@ class UserController extends Controller{
         $page->User_Settings($content_file, $user, $countries);
     }
 
+    public function actionAddorder(){
+        $order_model = new \main\models\Order();
+        if($this->session->contains('user_id')) {
+            $add_order = $order_model->addOrder($_REQUEST, $this->session->get('user_id'));
+            if($add_order) echo "Заказ успешно оформлен!";
+            else echo "Проблемы с заказом";
+        }
+        else echo "Для начала авторизуйтесь в системе!";
+    }
+
+    public function actionPaidorder(){
+        $order = new \main\models\Order();
+        $check = $order->paidOrder($_REQUEST['order_id']);
+        if($check) echo "Оплата произошла успешно! Ждите подтверждения админа!";
+        else echo "Что то вы обманываете, как Бендер будку самоубийств!";
+    }
+
+    public function actionMyorders(){
+        $order_model = new \main\models\Order();
+        $orders = $order_model->getUserOrders($this->session->get('user_id'));
+        $product_model = new \main\models\Product();
+        $products = $product_model->getProductsInOrder($orders);
+        $content_file = VIEWS . '/orders.php';
+        $page = new \main\components\Page();
+        $page->User_Orders($content_file, $orders, $products);
+    }
+
     public function actionSettingssave(){
         $user_model = new \main\models\User();
         $user_model->saveUser($_REQUEST, $this->session->get('user_id'));

@@ -61,5 +61,11 @@ class Page{
         include_once $this->footer;
     }
 
+    public function User_Orders($content_file, $orders, $products){
+        include_once $this->header;
+        include_once($content_file);
+        include_once $this->footer;
+    }
+
 }
 ?>

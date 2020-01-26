@@ -1,7 +1,9 @@
 <?php
 namespace main\models;
 
-class User{
+use \main\components\Model;
+
+class User extends Model{
     public $id;
     public $login;
     public $email;
@@ -12,12 +14,6 @@ class User{
     public $last_name;
     public $telephone;
     public $role;
-    private $storage;
-
-    public function __construct()
-    {
-        $this->storage = new \main\components\Storage();
-    }
 
     public function map($user_data){
         $this->id = $user_data['id'];

@@ -45,7 +45,6 @@ function basket_add(){
 		if(cart[last_product_in_order_id]["id"] == id){ new_product = false; break; }
 		last_product_in_order_id++;
 	}
-	console.log(last_product_in_order_id);
 	sum = 0;
 	if(new_product)cart[last_product_in_order_id] = {'id': id, 'title': title, 'price': price};
 	if(cart[last_product_in_order_id]["quantity"]){
@@ -55,16 +54,12 @@ function basket_add(){
 		cart[last_product_in_order_id]["quantity"] = 1;
 	}
 
-
-	console.log(cart);
 	cart_str = JSON.stringify(cart);
-	console.log(cart_str);
 	localStorage.setItem('basket', cart_str);
 	for(key in cart){
 		sum += cart[key]["quantity"];
 	}
 	count_products.innerHTML = sum;
-	console.log(cart);
 }
 
 /* ------------ Modal window for basket ------------ */
@@ -73,7 +68,8 @@ let $mdb = $("#cart_body");
 let modal_basket = document.getElementsByClassName('modal_basket')[0];
 function plus_product(e){
 	var quantity = document.getElementsByClassName('product_quantity');
-	quantity[$(e).attr('data-productId')].value = ++quantity[$(e).attr('data-productId')].value;
+	if(quantity[$(e).attr('data-productId')].value<10)quantity[$(e).attr('data-productId')].value = ++quantity[$(e).attr('data-productId')].value;
+	else {alert("Максимум 10 штук с каждого продукта!")};
 	for(key in cart){
 		if(cart[key]['title'] == $(e).attr('data-title')) cart[key]['quantity']++;
 	}
@@ -97,6 +93,7 @@ function getAllPrice(){
 		sum += Number(cart[key]['price'])*cart[key]['quantity'];
 	}
 	$('.allPrice span').text(sum);
+	return sum;
 }
 function ModalBasket(){
 $mdb.html("<h4>Перечень выбранных товаров: </h4><p>Пользуйтесь пожалуйста переключателями \"+\" \"-\"</p><p onclick=\"ModalBasket()\">Закрыть корзину</p>");
@@ -111,7 +108,7 @@ $mdb.html("<h4>Перечень выбранных товаров: </h4><p>По�
 		"</div>");
 	}
 	$mdb.append("<p class='allPrice'>Общая цена заказа: <span></span> грн.</p>");
-	$mdb.append("<button class='add_order'>Оформить заказ</button>")
+	$mdb.append("<button class='add_order' onclick='add_order()'>Оформить заказ</button>")
 	getAllPrice();
 }
 
@@ -155,6 +152,47 @@ function UserSaveChanges(){
 		},
 		error: function(respose){
 			console.log("Не удалось отправить данные!");
+		}
+	});
+}
+
+/* ------------- Add Order ------------- */
+
+function add_order(){
+	var order = {"price": getAllPrice()};
+	var count = 0;
+	for(key in cart){
+		order[count] = {"product_id": cart[key]["id"], "quantity": cart[key]["quantity"]};
+		count++;
+	}
+	console.log((order));
+	$.ajax({
+		url: '/children_toys/user/addorder/',
+		type: "POST",
+		data: order,
+		success: function(response){
+			alert(response);
+			localStorage.clear();
+		},
+		error: function(e){
+			alert('ошибка отправки данных!');
+		}
+	});
+}
+
+/* -------------- Pay Order ------------ */
+
+function payOrder(elem){
+	$.ajax({
+		url: '/children_toys/user/paidorder/',
+		type: "POST",
+		data: "order_id="+elem.value,
+		success: function(response){
+			console.log(response);
+
+		},
+		error: function(e){
+			console.log('ошибка отправки данных!');
 		}
 	});
 }
