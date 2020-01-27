@@ -188,11 +188,11 @@ function payOrder(elem){
 		type: "POST",
 		data: "order_id="+elem.value,
 		success: function(response){
-			console.log(response);
+			alert(response);
 
 		},
 		error: function(e){
-			console.log('ошибка отправки данных!');
+			alert('ошибка отправки данных!');
 		}
 	});
 }

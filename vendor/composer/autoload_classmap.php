@@ -8,9 +8,12 @@ $baseDir = dirname($vendorDir);
 return array(
     'main\\components\\Controller' => $baseDir . '/components/Controller.php',
     'main\\components\\DataBase' => $baseDir . '/components/DataBase.php',
+    'main\\components\\Model' => $baseDir . '/components/Model.php',
     'main\\components\\Page' => $baseDir . '/components/Page.php',
+    'main\\components\\PageExample' => $baseDir . '/components/PageExample.php',
     'main\\components\\Router' => $baseDir . '/components/Router.php',
     'main\\components\\Session' => $baseDir . '/components/Session.php',
+    'main\\components\\Singletone' => $baseDir . '/components/Singletone.php',
     'main\\components\\Storage' => $baseDir . '/components/Storage.php',
     'main\\controllers\\MainController' => $baseDir . '/controllers/MainController.php',
     'main\\controllers\\ProductsController' => $baseDir . '/controllers/ProductsController.php',

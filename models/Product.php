@@ -110,6 +110,31 @@ class Product extends Model
         return $data;
     }
 
+    public function searchProducts($search_query){
+        $query = "select distinct p.* from products p, brands b where p.title like '%$search_query%' or description like '%$search_query%' or vendor_code like '%$search_query%' or vendor_code = '$search_query' or b.title like '%$search_query%' or b.title = '$search_query'";
+        $this->storage->connectDB();
+        $search_products = $this->storage->query($query);
+        $products = [];
+        for($i = 0; $i < count($search_products); $i++){
+            $product = new \main\models\Product();
+            $product->map($search_products[$i]);
+            $products[] = $product;
+        }
+        return $products;
+    }
+
+    public function filterProducts($filters){
+        $query = "select p.* from products p, subcategories s where price_markup > ".($filters['price_min_filter']-1)." and price_markup < ".($filters['price_max_filter']+1)." and p.subcategory_id = s.id and s.category_id = ".$filters['categories_filter'];
+        $filters_products = $this->storage->query($query);
+        $products = [];
+        for($i = 0; $i < count($filters_products); $i++){
+            $product = new \main\models\Product();
+            $product->map($filters_products[$i]);
+            $products[] = $product;
+        }
+        return $products;
+    }
+
     public function getId(){
         return $this->id;
     }

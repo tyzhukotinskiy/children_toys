@@ -9,7 +9,5 @@ class Controller{
     {
         $this->session = new \main\components\Session();
         $this->session->start();
-
-
     }
 }

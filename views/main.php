@@ -20,17 +20,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-3">
+				<div class="col-3 products_filter">
 					<h3>Подбор подарка</h3>
-					<form action="#">
+					<form action="/children_toys/products/filter/" method="post">
 						<p>Укажите цену (грн):</p>
-						<input type="text" name="price_min_filter">
-						<input type="text" name="price_max_filter">
+						<input type="text" name="price_min_filter" placeholder="Минимальная цена:">
+						<input type="text" name="price_max_filter" placeholder="Максимальная цена:">
 						<p>Выберите категорию:</p>
 						<select name="categories_filter">
-						    <option value="1">Для малыша</option>
-						    <option value="2">Настольные игры</option>
+						    <option value="4">Для малыша</option>
+						    <option value="5">Настольные игры</option>
 						</select>
+                        <input type="submit" name="add_filter" value="Отифльтровать товары">
 					</form>
 				</div>
 			</div>

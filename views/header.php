@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><?=$this->title?></title>
     <link rel="stylesheet" href="/children_toys/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="/children_toys/css/main.css">
     <link href="/children_toys/fontawesome/css/all.css" rel="stylesheet">
+    <meta name="description" content="<?=$this->description?>">
+    <meta name="Keywords" content="<?=$this->keyWords?>">
+    <meta>
 </head>
 <body>
 <header id="header">
     <div class="container d-flex">
         <h2><a href="/children_toys/main/"><img src="/children_toys/images/logo.jpg" alt="Интернет магазин Слоник"></a></h2>
-        <form action="#">
+        <form action="/children_toys/products/search/" method="POST">
             <input type="text" name="search_query" placeholder="Поиск товаров">
             <input type="submit" value="Поиск" name="search">
         </form>

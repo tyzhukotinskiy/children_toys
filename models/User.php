@@ -32,6 +32,10 @@ class User extends Model{
         $query = "select * from users u where u.id = ".$user_id;
         $this->storage->connectDB();
         $user_query = $this->storage->query($query);
+        if($user_query[0]['country'] !== null) {
+            $query = "select * from countries where id = ".$user_query[0]['country'];
+            $user_query[0]['country'] = $this->storage->query($query)[0]['title'];
+        }
         $user = new \main\models\User();
         $user->map($user_query[0]);
         return $user;

@@ -1,9 +1,9 @@
 <section id="main_content">
 		<div class="container">
 			<div class="crumbs">
-				<p><a href="/children_toys/main/">Главная страница</a> / <?=$data[0]?></p>
+				<p><a href="/children_toys/main/">Главная страница</a> / <?=$category_title?></p>
 			</div>
-			<h3><?=$data[0]?></h3>
+			<h3><?=$category_title?></h3>
             <div class="row subcategories">
                 <? for($i = 0; $i < count($subcategories); $i++){?>
                     <div class="col-3">
